@@ -8,7 +8,7 @@ public class Ebook extends Book implements Sellable, Emailable {
     String fileType;
     double price;
 
-    public Ebook(String ISBN, String title, int yearPublished, String fileType, double price) {
+    public Ebook(String ISBN, String title, int yearPublished, double price, String fileType) {
         super(ISBN, title, yearPublished);
         this.fileType = fileType;
         this.price = price;
