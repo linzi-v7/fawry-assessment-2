@@ -28,4 +28,15 @@ public class Ebook extends Book implements Sellable, Emailable {
     public double getPrice() {
         return price;
     }
+
+    @Override
+    public String toString() {
+        return "Ebook{" +
+                "fileType='" + fileType + '\'' +
+                ", price=" + price +
+                ", ISBN='" + ISBN + '\'' +
+                ", title='" + title + '\'' +
+                ", yearPublished=" + yearPublished +
+                '}';
+    }
 }

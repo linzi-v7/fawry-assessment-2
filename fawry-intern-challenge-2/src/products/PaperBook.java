@@ -30,4 +30,16 @@ public class PaperBook extends Book implements Shippable, Sellable {
     public double getWeight() {
         return weight;
     }
+
+    @Override
+    public String toString() {
+        return "PaperBook{" +
+                "stockAvailable=" + stockAvailable +
+                ", price=" + price +
+                ", weight=" + weight +
+                ", ISBN='" + ISBN + '\'' +
+                ", title='" + title + '\'' +
+                ", yearPublished=" + yearPublished +
+                '}';
+    }
 }

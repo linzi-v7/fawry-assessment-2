@@ -9,5 +9,12 @@ public class Inventory {
 
     //<ISBN, Book Object> ISBN is suitable here because
     //its unique even for different formats (according to my research)
-    public static HashMap<String, Book> bookMap;
+    public static HashMap<String, Book> bookMap = new HashMap<>();
+
+    public static void listAllBooks()
+    {
+        for (Book book: bookMap.values()) {
+            System.out.println(book.toString());
+        }
+    }
 }

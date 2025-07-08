@@ -13,4 +13,5 @@ public abstract class Book {
     }
 
     public abstract BookType getBookType();
+    public abstract String toString();
 }

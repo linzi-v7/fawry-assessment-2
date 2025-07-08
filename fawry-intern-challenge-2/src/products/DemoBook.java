@@ -12,4 +12,13 @@ public class DemoBook extends Book {
     public BookType getBookType() {
         return BookType.DEMOBOOK;
     }
+
+    @Override
+    public String toString() {
+        return "DemoBook{" +
+                "ISBN='" + ISBN + '\'' +
+                ", title='" + title + '\'' +
+                ", yearPublished=" + yearPublished +
+                '}';
+    }
 }

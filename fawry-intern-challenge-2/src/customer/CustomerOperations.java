@@ -55,7 +55,7 @@ public class CustomerOperations {
     private static void validateStock(PaperBook paperBook, int quantity) throws Exception {
         if (paperBook.stockAvailable < quantity) {
             String message = String.format(
-                    "NOT ENOUGH STOCK AVAILABLE%n" +
+                    "** ERROR: NOT ENOUGH STOCK AVAILABLE%n" +
                             "* STOCK AVAILABLE: %d%n" +
                             "* YOUR DESIRED QUANTITY: %d%n" +
                             "** PLEASE TRY AGAIN WITH APPROPRIATE AMOUNT **",
