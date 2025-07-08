@@ -10,39 +10,82 @@ import products.interfaces.Sellable;
 public class CustomerOperations {
 
     //email and address should be optional but the document doesnt state so
-    public static void buyBook(String ISBN, int quantity, String email, String address)
-    {
+    public static void buyBook(String ISBN, int quantity, String email, String address) {
+
+        try {
+            Book book = validatePurchase(ISBN, quantity);
+            processPurchase(book,quantity,email,address);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    //all the checks needed before processing the transaction goes here
+    private static Book validatePurchase(String ISBN, int quantity) throws Exception {
         Book bookToBuy = InventoryController.getBook(ISBN);
-        double totalPrice;
 
-        //check if exists
-        if(bookToBuy == null)
-        {
-            System.out.println("** ERROR: BOOK NOT AVAILABLE **");
-            return;
-        }
+        if (bookToBuy == null)
+            throw new Exception("** ERROR: BOOK NOT EXIST **");
 
-        assert bookToBuy instanceof Sellable; //check if not demo book
+        if (!(bookToBuy instanceof Sellable))
+            throw new Exception("** ERROR: BOOK NOT FOR SALE (DEMO VER.) **");
 
-        if(bookToBuy instanceof PaperBook paperBook)
-        {
-            if(paperBook.stockAvailable < quantity)
-            {
-                System.out.println("** ERROR: NOT ENOUGH STOCK AVAILABLE **");
-                System.out.println("* STOCK AVAILABLE: " + paperBook.stockAvailable);
-                System.out.println("* YOUR DESIRED QUANTITY: " + quantity);
-                System.out.println("** PLEASE TRY AGAIN WITH APPROPRIATE AMOUNT **\n");
-                return;
-            }
+        if (bookToBuy instanceof PaperBook paperBook)
+            validateStock(paperBook, quantity);
 
-            totalPrice = paperBook.getPrice() * quantity;
-            System.out.println("PRICE TO BE PAID: " + totalPrice);
-            ((PaperBook) bookToBuy).stockAvailable = paperBook.stockAvailable - quantity;
-            ShippingService.ship(paperBook,address);
-            return;
-        }
-        totalPrice = ((Sellable) bookToBuy).getPrice();
+        return bookToBuy;
+    }
+
+    private static void processPurchase(Book book, int quantity, String email, String address)
+    {
+        double totalPrice = calculateTotalPrice(book,quantity);
         System.out.println("PRICE TO BE PAID: " + totalPrice);
-        MailService.mail(bookToBuy,email);
+
+        if (book instanceof PaperBook paperBook)
+        {
+            updateStock(paperBook,quantity);
+            ShippingService.ship(book,address);
+        }
+        else {
+            MailService.mail(book,email);
+        }
+    }
+
+    //used to validate if enough stock is available ONLY FOR PaperBooks
+    private static void validateStock(PaperBook paperBook, int quantity) throws Exception {
+        if (paperBook.stockAvailable < quantity) {
+            String message = String.format(
+                    "NOT ENOUGH STOCK AVAILABLE%n" +
+                            "* STOCK AVAILABLE: %d%n" +
+                            "* YOUR DESIRED QUANTITY: %d%n" +
+                            "** PLEASE TRY AGAIN WITH APPROPRIATE AMOUNT **",
+                    paperBook.stockAvailable, quantity
+            );
+
+            throw new Exception(message);
+        }
+    }
+
+    private static double calculateTotalPrice(Book book, int quantity)
+    {
+        double totalPrice;
+        Sellable sellableBook = (Sellable) book;
+
+        //if its physical (paper) book, we need to multiply by quantity else its quantity is 1 (EBOOK)
+        if(sellableBook instanceof PaperBook)
+            totalPrice = sellableBook.getPrice() * quantity;
+        else
+            totalPrice = sellableBook.getPrice();
+
+        return totalPrice;
+
+    }
+
+    private static void updateStock(PaperBook paperBook, int quantity)
+    {
+        System.out.println("** UPDATING STOCK");
+        System.out.println("** BEFORE: " + paperBook.stockAvailable);
+        paperBook.stockAvailable -= quantity;
+        System.out.println("** AFTER: " + paperBook.stockAvailable);
     }
 }
