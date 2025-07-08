@@ -4,14 +4,14 @@ import products.Book;
 import products.BookType;
 import products.Ebook;
 import products.PaperBook;
-import products.interfaces.DemoBook;
+import products.DemoBook;
 
-public class BookFactory {
+class BookFactory {
 
     //args should contain the optional parameters for the different types of books
     //price -> weight -> stock for Paperbooks
     //price -> filetype for ebooks
-    public static Book createBook(BookType type, String isbn, String title, int yearPublished, Object ...args)
+    static Book createBook(BookType type, String isbn, String title, int yearPublished, Object ...args)
     {
         switch (type)
         {

@@ -12,5 +12,5 @@ public abstract class Book {
         this.yearPublished = yearPublished;
     }
 
-    public abstract String getBookType();
+    public abstract BookType getBookType();
 }

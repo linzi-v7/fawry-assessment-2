@@ -15,8 +15,8 @@ public class Ebook extends Book implements Sellable, Emailable {
     }
 
     @Override
-    public String getBookType() {
-        return "E-Book";
+    public BookType getBookType() {
+        return BookType.EBOOK;
     }
 
     @Override

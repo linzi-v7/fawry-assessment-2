@@ -17,8 +17,8 @@ public class PaperBook extends Book implements Shippable, Sellable {
     }
 
     @Override
-    public String getBookType() {
-        return "PaperBook";
+    public BookType getBookType() {
+        return BookType.PAPER_BOOK;
     }
 
     @Override

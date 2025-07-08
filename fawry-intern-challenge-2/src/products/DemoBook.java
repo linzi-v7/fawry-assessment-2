@@ -1,4 +1,4 @@
-package products.interfaces;
+package products;
 
 import products.Book;
 
@@ -9,7 +9,7 @@ public class DemoBook extends Book {
     }
 
     @Override
-    public String getBookType() {
-        return "Demo Book (NOT FOR SALE)";
+    public BookType getBookType() {
+        return BookType.DEMOBOOK;
     }
 }
