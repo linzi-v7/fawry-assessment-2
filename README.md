@@ -40,9 +40,16 @@ A modular online bookstore system implementing three book types with inventory m
 - **Inventory Analytics**
   - Outdated book reporting
 
-  ### 📺 Demo Video
+### 📺 Demo Video
 
 [![Watch the demo](https://img.youtube.com/vi/gSmd-vNXPvQ/hqdefault.jpg)](https://www.youtube.com/watch?v=gSmd-vNXPvQ)
+
+### Screenshots
+
+[![Screenshot](./screenshots/1.png)]
+[![Screenshot](./screenshots/2.png)]
+[![Screenshot](./screenshots/3.png)]
+[![Screenshot](./screenshots/4.png)]
 
 ## 💻 Development Environment
 
