@@ -1,4 +1,4 @@
-package inventory.interfaces;
+package products.interfaces;
 
 public interface Emailable {
     String getFileType();

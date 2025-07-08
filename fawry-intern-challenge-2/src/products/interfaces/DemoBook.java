@@ -1,6 +1,6 @@
-package inventory.interfaces;
+package products.interfaces;
 
-import inventory.Book;
+import products.Book;
 
 public class DemoBook extends Book {
 

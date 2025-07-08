@@ -1,4 +1,4 @@
-package inventory;
+package products;
 
 public abstract class Book {
     //better to use private with getters and setters, but i went this way for convenience

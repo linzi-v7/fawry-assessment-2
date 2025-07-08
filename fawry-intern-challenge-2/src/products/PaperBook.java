@@ -1,7 +1,7 @@
-package inventory;
+package products;
 
-import inventory.interfaces.Sellable;
-import inventory.interfaces.Shippable;
+import products.interfaces.Sellable;
+import products.interfaces.Shippable;
 
 public class PaperBook extends Book implements Shippable, Sellable {
 

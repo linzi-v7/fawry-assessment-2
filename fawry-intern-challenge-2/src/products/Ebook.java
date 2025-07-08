@@ -1,7 +1,7 @@
-package inventory;
+package products;
 
-import inventory.interfaces.Emailable;
-import inventory.interfaces.Sellable;
+import products.interfaces.Emailable;
+import products.interfaces.Sellable;
 
 public class Ebook extends Book implements Sellable, Emailable {
 
